@@ -1,46 +1,22 @@
-### Data
+## Frustratingly Easy Transferability Estimation
 
-We follow FreeLunch to use 'S2M2_R' to pre-train the backbone and extract features. Please refer to https://github.com/ShuoYang-1998/Few_Shot_Distribution_Calibration
- for backbone training and feature downloading.
+This is the official code of TransRate.
 
-After preparing the data, please set the path of the data by *_datasetFeaturesFiles* in *FSLTask.py*.
+## Demonstration
+We provide a Jupyter Notebook(*Demo.ipynb*) for the demostration of TransRate.
 
-<br/>
+The calculation of TranRate requires $logdet$ on the data covariance matrix, which can be calculated using the eigenvalues of the data matrix. (see Lemma D.2).
+For demonstration convenience, we extract the eigenvalues and store them in *./logs_trans*. The code for extracting the eigenvalues can be found in *./generate_transrate*.
 
-### Meta-testing
-
-1. Test ADV-CE
-   
-   ```
-   python run_test.py --shot 1 --classifier 'ADV-CE' --tukey 1 --l2normalization 0 --nnk 9 --rw_step 2 --sigma_bias 0.01  --lr 0.1
-   python run_test.py --shot 5 --classifier 'ADV-CE' --tukey 1 --l2normalization 0 --nnk 9 --rw_step 2 --sigma_bias 0.01  --lr 0.1
-   ```
-
-2. Test ADV-CE-TIM
-   
-   ```
-   python run_test.py --shot 1 --classifier 'ADV-CE-TIM' --tukey 1 --l2normalization 0 --nnk 9 --rw_step 2 --sigma_bias 0.01  --lr 0.1 --tim_para 1.0
-   python run_test.py --shot 5 --classifier 'ADV-CE-TIM' --tukey 1 --l2normalization 0 --nnk 9 --rw_step 2 --sigma_bias 0.01  --lr 0.1 --tim_para 1.0
-   ```
-
-3. Test ADV-SVM
-   
-   ```
-   python run_test.py --shot 1 --classifier 'ADV-SVM' --tukey 1 --l2normalization 0  --nnk 9 --rw_step 2 --sigma_bias 0.0 --gamma 1.0
-   python run_test.py --shot 5 --classifier 'ADV-SVM' --tukey 1 --l2normalization 0  --nnk 9 --rw_step 2 --sigma_bias 0.0 --gamma 1.0
-   ```
-
-<br/>
-
-### Citation
-
-If you use this code for your research, please cite our paper:
-
+## Citation
+If you find this code useful your research, please cite our paper:
 ```
-@inproceedings{huang2022improving,
-  title={Improving Task-Specific Generalization in Few-Shot Learning via Adaptive Vicinal Risk Minimization},
-  author={Huang, Long-Kai and Wei, Ying},
-  booktitle={Advances in Neural Information Processing Systems},
-  year=2022
+@inproceedings{huang2022frustratingly,
+  title={Frustratingly easy transferability estimation},
+  author={Huang, Long-Kai and Huang, Junzhou and Rong, Yu and Yang, Qiang and Wei, Ying},
+  booktitle={International Conference on Machine Learning},
+  pages={9201--9225},
+  year={2022},
+  organization={PMLR}
 }
 ```
